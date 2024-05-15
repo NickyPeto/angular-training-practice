@@ -1,0 +1,40 @@
+<header class="home-header">
+  <h3>Test weather app</h3>
+</header>
+<main>
+  <section class="search-container">
+    <form (ngSubmit)="addZipCodeToList()">
+      <input
+        class="search-input"
+        placeholder="Enter a zipcode"
+        name="zipcode"
+        [(ngModel)]="zipCode"
+      />
+      <button class="search-button" type="submit">Add Location</button>
+    </form>
+  </section>
+  <section>
+    <ng-container
+      *ngFor="let conditions of weatherConditions(); let index = index"
+    >
+      @if (conditions.zipcode.length > 0) {
+      <app-weather-banner
+        [zipcode]="conditions.zipcode"
+        [cityName]="conditions.cityName"
+        [maxTem]="conditions.main.temp_max"
+        [minTemp]="conditions.main.temp_min"
+        [temperature]="conditions.main.temp"
+        [weather]="conditions.weather[0].main"
+      >
+        <button
+          (click)="removeElement(conditions.zipcode, index)"
+          class="button-close"
+        >
+          X
+        </button>
+      </app-weather-banner>
+
+      }
+    </ng-container>
+  </section>
+</main>

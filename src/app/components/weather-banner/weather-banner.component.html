@@ -1,0 +1,71 @@
+<div class="container" [routerLink]="['/forecast', zipcode]">
+  <div class="row">
+    <div class="col">
+      <p class="city-name">{{ cityName }}</p>
+      @if (date) {
+      <p>{{ date }}</p>
+      }
+
+      <div class="max-min">
+        <p>
+          Max: <strong>{{ maxTem | number : "1.0-0" }} °</strong>
+        </p>
+        <span></span>
+        <p>
+          Min:<strong>{{ minTemp | number : "1.0-0" }} °</strong>
+        </p>
+      </div>
+    </div>
+    <div class="col">
+      <p class="temperature">{{ temperature | number : "1.0-0" }} °</p>
+    </div>
+    @switch (weather) { @case ("Clear") {
+    <div class="col">
+      <img
+        src="../../../assets/sun.png"
+        alt="A picture of a sun"
+        height="120px"
+        width="120px"
+      />
+      <p>{{ weather }}</p>
+    </div>
+    } @case ("Rain") {
+
+    <div class="col">
+      <p>{{ weather }}</p>
+      <img
+        src="../../../assets/rain.png"
+        alt="A picture of a cloud with rain"
+        height="120px"
+        width="120px"
+      />
+    </div>
+
+    } @case ("Snow") {
+
+    <div class="col">
+      <img
+        src="../../../assets/snow.png"
+        alt="A picture of a cloud with snow"
+        height="120px"
+        width="120px"
+      />
+      <p>{{ weather }}</p>
+    </div>
+
+    } @case ("Clouds") {
+
+    <div class="col">
+      <img
+        src="../../../assets/clouds.png"
+        alt="A picture of a cloud"
+        height="120px"
+        width="120px"
+      />
+      <p>{{ weather }}</p>
+    </div>
+
+    } }
+  </div>
+  <ng-content></ng-content>
+</div>

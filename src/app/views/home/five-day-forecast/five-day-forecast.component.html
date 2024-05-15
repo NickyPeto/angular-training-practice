@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="col">
+    <h3 class="city-name">
+      {{ extendedForecast().city.name }}
+    </h3>
+  </div>
+</div>
+<ng-container *ngFor="let forecast of extendedForecast().list">
+  <app-weather-banner
+    [date]="forecast.dt | unixTimestampToDate"
+    [temperature]="forecast.main.temp"
+    [weather]="forecast.weather[0].main"
+  ></app-weather-banner>
+</ng-container>
